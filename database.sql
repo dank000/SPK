@@ -1,6 +1,7 @@
 -- DROP & CREATE jika sudah ada
 DROP TABLE IF EXISTS `products`;
 DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `products` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,3 +25,14 @@ INSERT INTO `products` (`name`, `price`, `image`, `description`, `bestseller`) V
 ('Xiaomi Redmi Note 12', 2999000, 'images/product-2.png', 'Xiaomi dengan layar AMOLED dan baterai 5000mAh.', 0),
 ('iPhone 14', 15999000, 'images/product-3.png', 'iPhone 14 dengan chip A15 Bionic dan kamera ganda 12MP.', 1),
 ('Realme C55', 2299000, 'images/product-4.png', 'Realme C55 dengan RAM 6GB dan ROM 128GB.', 0);
+
+CREATE TABLE `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(50),
+  `password` VARCHAR(255),
+  `role` ENUM('admin','viewer') DEFAULT 'admin'
+);
+
+-- admin default login: admin / 123
+INSERT INTO `users` (`username`, `password`, `role`)
+VALUES ('admin', MD5('123'), 'admin');
