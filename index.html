@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Store</title>
+    <!-- font awesome-->
+    <script
+      src="https://kit.fontawesome.com/f386dbcdd1.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />-->
+    <!--custom css-->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="images/cart_icon.png" type="image/png" />
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar">
+      <div class="navbar-center">
+        <span class="nav-icon">
+          <img src="images/logo.png" alt="Logo" class="logo-img" id="logo" />
+        </span>
+        <span class="navbar-title">Phone Store</span>
+        <div class="cart-btn">
+          <a href="cart.html">
+            <span class="nav-icon">
+              <i class="fas fa-cart-plus" style="color: #76abae"></i>
+            </span>
+            <div class="cart-items">0</div>
+          </a>
+          <!-- <span class="nav-icon">
+          <i class="fas fa-cart-plus"></i>
+        </span>
+        <div class="cart-items">0</div> -->
+        </div>
+      </div>
+    </nav>
+    <!--end of navbar-->
+
+    <!--hero-->
+    <header class="hero">
+      <div class="banner">
+        <h1 class="banner-title">phone collection</h1>
+        <button class="banner-btn">Beli Sekarang</button>
+      </div>
+    </header>
+    <!--end of hero-->
+
+    <!--products-->
+    <section class="products">
+      <div class="section-title">
+        <div
+          class="filter-controls"
+          style="text-align: center; margin-bottom: 2rem"
+        >
+          <input
+            type="text"
+            id="search-box"
+            placeholder="Cari handphone..."
+            style="padding: 0.5rem; width: 200px; margin-right: 1rem"
+          />
+          <select id="sort-options" style="padding: 0.5rem">
+            <option value="default">Urutkan</option>
+            <option value="az">Nama A-Z</option>
+            <option value="bestseller">Best Seller</option>
+            <option value="lowest">Harga Terendah</option>
+            <option value="highest">Harga Tertinggi</option>
+          </select>
+        </div>
+
+        <h2>produk kami</h2>
+      </div>
+      <div class="products-center" id="product-container"></div>
+    </section>
+    <!--end of products-->
+
+    <script src="script.js"></script>
+
+    <!-- Modal Detail Produk -->
+    <div id="product-modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <img
+          id="modal-image"
+          src=""
+          alt="Product"
+          style="max-width: 100%; height: auto"
+        />
+        <h2 id="modal-name"></h2>
+        <p id="modal-price"></p>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+  </body>
+</html>
