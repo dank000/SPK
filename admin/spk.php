@@ -7,7 +7,7 @@ if (!isset($_SESSION['login'])) {
 ?>
 
 <?php
-include '../db.php';
+include '../MAIN-PAGE/db.php';
 
 $data = [];
 $res = $conn->query("SELECT * FROM products");

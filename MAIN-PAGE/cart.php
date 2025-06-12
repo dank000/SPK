@@ -1,10 +1,10 @@
-<?php include 'db.php'; ?>
+<?php include '../MAIN-PAGE/db.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Cart</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
   <nav class="navbar">

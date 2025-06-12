@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
 }
 ?>
 
-<?php include '../db.php'; ?>
+<?php include '../MAIN-PAGE/db.php' ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
