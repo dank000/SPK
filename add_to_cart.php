@@ -1,5 +1,5 @@
 <?php
-include '../MAIN-PAGE/db.php';
+include 'db.php';
 $product_id = $_POST['product_id'];
 // Cek apakah produk sudah ada di keranjang
 $res = $conn->query("SELECT * FROM cart WHERE product_id = $product_id");

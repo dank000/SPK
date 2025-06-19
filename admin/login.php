@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../MAIN-PAGE/db.php';
+include '../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = $_POST['username'];

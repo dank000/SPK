@@ -1,4 +1,4 @@
-<?php include 'auth.php'; include '../MAIN-PAGE/db.php';
+<?php include 'auth.php'; include '../db.php';
 
 $data = $conn->query("SELECT * FROM products");
 $products = [];

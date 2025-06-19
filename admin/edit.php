@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
 }
 ?>
 
-<?php include '../MAIN-PAGE/db.php' ?>
+<?php include '../db.php'; ?>
 <?php
 $id = $_GET['id'];
 $res = $conn->query("SELECT * FROM products WHERE id = $id");

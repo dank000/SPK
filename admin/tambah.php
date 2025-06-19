@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
 }
 ?>
 
-<?php include '../MAIN-PAGE/db.php' ?>
+<?php include '../db.php'; ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $_POST['name'];
