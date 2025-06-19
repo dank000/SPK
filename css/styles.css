@@ -46,7 +46,12 @@ body {
 }
 
 .nav-icon {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  color: #000;
+  cursor: pointer;
+}
+.nav-icon:hover {
+  color: var(--mainTeal);
 }
 
 .navbar-title {
@@ -81,7 +86,7 @@ body {
 
 .hero {
   min-height: calc(100vh - 60px);
-  background: url("images/hero-bg.png") center/cover no-repeat;
+  background: url("../images/hero-bg.png") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;
