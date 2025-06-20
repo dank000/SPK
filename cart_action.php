@@ -1,79 +1,61 @@
 <?php
+// cart_action.php
 require 'db.php';
-?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Keranjang Belanja – RevoCar’s</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
 
-  <!-- Navbar Sederhana -->
-  <nav class="navbar">
-    <div class="navbar-center">
-      <h1 class="navbar-title">RevoCar’s - SPK SAW</h1>
-      <div class="cart-btn">
-        <i class="fas fa-shopping-cart nav-icon"></i>
-        <span class="cart-items">
-          <?php
-            $cnt = $conn->query("SELECT SUM(quantity) AS total FROM cart")
-                        ->fetch_assoc()['total'] ?? 0;
-            echo $cnt;
-          ?>
-        </span>
-      </div>
-    </div>
-  </nav>
+/**
+ * Hindari open-redirect dengan hanya mengizinkan karakter alfanumerik, slash, dot, underscore
+ */
+function clean_redirect(string $url): string {
+    return preg_replace('/[^a-zA-Z0-9_\.\/]/', '', $url);
+}
 
-  <div class="cart">
-    <h2>Keranjang Belanja</h2>
-    <div class="cart-content">
-      <?php
-      // ambil semua item di cart
-      $res = $conn->query("
-        SELECT 
-          c.id        AS cart_id,
-          c.product_id,
-          c.quantity,
-          p.nama      AS nama,
-          p.harga     AS harga,
-          p.image     AS image
-        FROM cart c
-        JOIN products p ON c.product_id = p.id
-      ");
-      if ($res->num_rows > 0):
-        while ($item = $res->fetch_assoc()):
-      ?>
-        <div class="cart-item">
-          <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['nama']) ?>">
-          <div>
-            <h4><?= htmlspecialchars($item['nama']) ?></h4>
-            <h5>Rp <?= number_format($item['harga'], 0, ',', '.') ?></h5>
-            <p>Jumlah: <?= $item['quantity'] ?></p>
-            <form action="cart_action.php" method="post" style="display:inline;">
-              <input type="hidden" name="action" value="remove">
-              <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
-              <button type="submit" class="remove-item">
-                <i class="fas fa-trash"></i> Hapus
-              </button>
-            </form>
-          </div>
-        </div>
-      <?php
-        endwhile;
-      else:
-        echo '<p>Keranjang Anda masih kosong.</p>';
-      endif;
-      ?>
-    </div>
-    <div class="cart-footer">
-      <a href="index.php" class="banner-btn">Kembali Belanja</a>
-    </div>
-  </div>
+// Ambil parameter
+$action   = $_GET['action']            ?? '';
+$pid      = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
+$redirect = isset($_GET['redirect'])   ? clean_redirect($_GET['redirect']) : 'cart.php';
 
-</body>
-</html>
+switch ($action) {
+    case 'add':
+        if ($pid > 0) {
+            // sudah ada di keranjang?
+            $chk = $conn->query("SELECT * FROM cart WHERE product_id = {$pid}");
+            if ($chk && $chk->num_rows) {
+                $conn->query("UPDATE cart SET quantity = quantity + 1 WHERE product_id = {$pid}");
+            } else {
+                $conn->query("INSERT INTO cart (product_id, quantity) VALUES ({$pid}, 1)");
+            }
+        }
+        break;
+
+    case 'increment':
+        if ($pid > 0) {
+            $conn->query("UPDATE cart SET quantity = quantity + 1 WHERE product_id = {$pid}");
+        }
+        break;
+
+    case 'decrement':
+        if ($pid > 0) {
+            $conn->query("UPDATE cart SET quantity = quantity - 1 WHERE product_id = {$pid}");
+            $conn->query("DELETE FROM cart WHERE product_id = {$pid} AND quantity <= 0");
+        }
+        break;
+
+    case 'remove':
+        if ($pid > 0) {
+            $conn->query("DELETE FROM cart WHERE product_id = {$pid}");
+        }
+        break;
+
+    case 'clear':
+        $conn->query("DELETE FROM cart");
+        break;
+
+    default:
+        header('HTTP/1.1 400 Bad Request');
+        echo 'Invalid cart action';
+        exit;
+}
+
+// Redirect kembali ke halaman asal
+header('Location: ' . $redirect);
+exit;
