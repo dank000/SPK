@@ -27,17 +27,17 @@ INSERT INTO products (nama, harga, ram, kamera, baterai, image) VALUES
 ('Xiaomi Redmi Note 12', 2999000, 8, 108, 5000, 'images/xiaomi-redmi-note-12.png'),
 ('iPhone 14', 15999000, 4, 12, 3279, 'images/iphone-14.png'),
 ('Realme C55', 2299000, 8, 64, 5000, 'images/realme-c55.png'),
-('Vivo V25 Pro', 7999000, 8, 64, 4830, 'images/vivo-v25-pro.png'),
-('Oppo A78', 2999000, 8, 50, 5000, 'images/oppo-a78.png'),
-('Asus Zenfone 9', 9999000, 8, 50, 4300, 'images/asus-zenfone-9.png'),
-('Google Pixel 7a', 5999000, 8, 64, 4385, 'images/google-pixel-7a.png'),
-('Sony Xperia 10 IV', 4999000, 6, 12, 5000, 'images/sony-xperia-10-iv.png'),
-('Motorola Moto G Power', 3499000, 4, 50, 5000, 'images/motorola-moto-g-power.png'),
-('Nokia G50', 2999000, 4, 48, 5000, 'images/nokia-g50.png'),
-('Huawei P50 Pro', 12999000, 8, 50, 4360, 'images/huawei-p50-pro.png'),
-('LG Velvet', 5999000, 6, 48, 4300, 'images/lg-velvet.png'),
-('OnePlus Nord 2', 4999000, 8, 50, 4500, 'images/oneplus-nord-2.png'),
-('HTC U20 5G', 3999000, 8, 48, 5000, 'images/htc-u20-5g.png');
+('Vivo V25 Pro', 7999000, 8, 64, 4830, 'images/vivov25pro.png'),
+('Oppo A78', 2999000, 8, 50, 5000, 'images/oppoa78.png'),
+('Asus Zenfone 9', 9999000, 8, 50, 4300, 'images/Asus-Zenfone-9.jpg'),
+('Google Pixel 7a', 5999000, 8, 64, 4385, 'images/googlepixel.png'),
+('Sony Xperia 10 IV', 4999000, 6, 12, 5000, 'images/sonyxperia10iv.jpg'),
+('Motorola Moto G Power', 3499000, 4, 50, 5000, 'images/motorolamotogpower.png'),
+('Nokia G50', 2999000, 4, 48, 5000, 'images/nokiag50.jpg'),
+('Huawei P50 Pro', 12999000, 8, 50, 4360, 'images/huaweip50.png'),
+('LG Velvet', 5999000, 6, 48, 4300, 'images/lgvelvet.png'),
+('OnePlus Nord 2', 4999000, 8, 50, 4500, 'images/OnePlus Nord 2.jpg'),
+('HTC U20 5G', 3999000, 8, 48, 5000, 'images/HTC U20 5G.png');
 
 -- Tabel cart
 CREATE TABLE cart (
